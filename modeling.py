@@ -6,6 +6,8 @@ from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.feature import StringIndexer    
 from pyspark.sql.functions import when
 from pyspark.ml.evaluation import RegressionEvaluator
+from pyspark.ml.tuning import CrossValidator
+from pyspark.ml.tuning import ParamGridBuilder
 
 app_name = "sparkml"
 conf = SparkConf().setMaster("local").setAppName(app_name)
@@ -78,12 +80,26 @@ rfpredicts = rfmodel.transform(dfTest)
 evaluator = RegressionEvaluator(labelCol="label", predictionCol="prediction", metricName="rmse")
 rmse = evaluator.evaluate(rfpredicts)
 
+#cross validation
+cv = CrossValidator().setEstimator(rf).setEvaluator(evaluator).setNumFolds(5)
 
+paramGrid = ParamGridBuilder().addGrid(rf.numTrees, [10,20,30,40,50])\
+    .addGrid(rf.maxDepth, [20,40,50])\
+    .addGrid(rf.maxBins,[70,80,90]).build()
+#setEstimatorParamMaps() takes ParamGridBuilder().
+cv.setEstimatorParamMaps(paramGrid)
+cvmodel = cv.fit(dfTrain)
+
+rmse_best = evaluator.evaluate(cvmodel.bestModel.transform(dfTest))
 #print the desired output
 print " "
 print targetDf.printSchema()
 print " "
-print("RMSE = %d" % rmse)
+print("RMSE_baseline = %d" % rmse)
+print " "
+print("RMSE_best = %d" % rmse_best)
+
+
 
 sc.stop()
 
