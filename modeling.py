@@ -81,11 +81,11 @@ evaluator = RegressionEvaluator(labelCol="label", predictionCol="prediction", me
 rmse = evaluator.evaluate(rfpredicts)
 
 #cross validation
-cv = CrossValidator().setEstimator(rf).setEvaluator(evaluator).setNumFolds(5)
+cv = CrossValidator().setEstimator(rf).setEvaluator(evaluator).setNumFolds(3)
 
-paramGrid = ParamGridBuilder().addGrid(rf.numTrees, [10,20,30,40,50])\
-    .addGrid(rf.maxDepth, [20,40,50])\
-    .addGrid(rf.maxBins,[70,80,90]).build()
+paramGrid = ParamGridBuilder().addGrid(rf.numTrees, [30,40,50])\
+    .addGrid(rf.maxDepth, [10,20,30])\
+    .addGrid(rf.maxBins, [70,80,90]).build()
 #setEstimatorParamMaps() takes ParamGridBuilder().
 cv.setEstimatorParamMaps(paramGrid)
 cvmodel = cv.fit(dfTrain)
