@@ -81,23 +81,23 @@ evaluator = RegressionEvaluator(labelCol="label", predictionCol="prediction", me
 rmse = evaluator.evaluate(rfpredicts)
 
 #cross validation
-cv = CrossValidator().setEstimator(rf).setEvaluator(evaluator).setNumFolds(3)
+#cv = CrossValidator().setEstimator(rf).setEvaluator(evaluator).setNumFolds(3)
 
-paramGrid = ParamGridBuilder().addGrid(rf.numTrees, [30,40,50])\
-    .addGrid(rf.maxDepth, [10,20,30])\
-    .addGrid(rf.maxBins, [70,80,90]).build()
+#paramGrid = ParamGridBuilder().addGrid(rf.numTrees, [30,40,50])\
+    #.addGrid(rf.maxDepth, [10,20,30])\
+    #.addGrid(rf.maxBins, [70,80,90]).build()
 #setEstimatorParamMaps() takes ParamGridBuilder().
-cv.setEstimatorParamMaps(paramGrid)
-cvmodel = cv.fit(dfTrain)
+#cv.setEstimatorParamMaps(paramGrid)
+#cvmodel = cv.fit(dfTrain)
 
-rmse_best = evaluator.evaluate(cvmodel.bestModel.transform(dfTest))
+#rmse_best = evaluator.evaluate(cvmodel.bestModel.transform(dfTest))
 #print the desired output
 print " "
 print targetDf.printSchema()
 print " "
 print("RMSE_baseline = %d" % rmse)
-print " "
-print("RMSE_best = %d" % rmse_best)
+#print " "
+#print("RMSE_best = %d" % rmse_best)
 
 
 
