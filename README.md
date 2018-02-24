@@ -9,30 +9,24 @@ Jade Yun, Yimei Chen, Si Chen, Yu Tian
 ## Goal
 
 
-This project is the final project of MSAN697 Distributed Data System. In this project we used ML algorithms and s3, MongoDB, spark, AWS to predict Bay Area bike share daily demand.
-A major component of online companies like Redfin (https://www.redfin.com) and Zillow (https://www.zillow.com) is their ability to develop estimates for the cost of a house currently on the market. In this study, we will act like an employee at one of these companies. 
+This project is the final project of MSAN697 Distributed Data System. In this project we used ML algorithms and s3, MongoDB, spark, AWS to predict Bay Area bike share daily demand. In the presentation slides, we also showed our result to compare the 
+performance of executing modeling.py (the model pipline file) on local machine and on aws standalone cluster.
 
 
-In particular, we will use regression analysis to complete two major tasks:
+The learning outcome of this project is to understand the application of spark ML, cloud data pipline construction and cost efficiency in big data implementation. 
 
-
-- Explore the features of houses in in Ames, Iowa and build an explanatory regression model that describes which aspects of a home most strongly a↵ects its value.
-
-
-- Build a predictive model that most closely forecasts the value at which the house will be sold.
 
 
 ## Description of Data
 
 
-The dataset we will be analyzing in this study is saved in the housing.txt file, and a description of each variable in the data set is provided in the Data Description.txt file on the github site.
+The dataset we will be analyzing in this study is from the kaggle (https://www.kaggle.com/benhamner/sf-bay-area-bike-share/data)
+
+The data includes information about Anonymized bike trip data from August 2013 to August 2015 with tables: station, weather, trip, status. 
 
 
-The data contains 1460 observations with 79 variables, including a house ID and the sale price of each house.
+## Presentation slides
 
 
-## Report
-
-
-The report is a complete demonstration of the discussion and summary of the prediction as well as evaluation.
+The Presentation slides is a complete demonstration of the discussion and summary of the prediction as well as evaluation.
 
